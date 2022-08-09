@@ -1,0 +1,32 @@
+<?php
+
+use Drupal\user\UserInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
+
+function openid_connect_accessci_client_openid_connect_userinfo_save(UserInterface $account, array $context) {
+    if  ( $context['plugin_id'] != 'accessci'
+        || empty($context['userinfo']['sub'])) {
+        return;
+    }
+    $account->set('name', $context['userinfo']['sub']);
+
+    $settings = \Drupal::config('openid_connect.settings.accessci')->get('settings');
+    $redirect_to = $settings['login_redirection'];
+    if ( !empty($redirect_to) ) {
+        $redirect = new RedirectResponse(Url::fromUserInput($redirect_to)->toString());
+        $redirect->send();
+    }
+
+    return TRUE;
+}
+
+function openid_connect_accessci_client_openid_connect_pre_authorize($account, array $context) {
+    if ( empty($context['userinfo']['idp_name'])
+        || $context['userinfo']['idp_name'] != 'ACCESS' ) {
+            Drupal::messenger()->addError(t('This website requires login using an ACCESS CI identity'));
+            return FALSE;
+    }
+
+   return TRUE;
+}

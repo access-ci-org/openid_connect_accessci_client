@@ -1,0 +1,28 @@
+{
+    "name": "accessci/openid_connect_accessci_client",
+    "description": "OpenID Connect ACCESS CI Client",
+    "type": "drupal-custom-module",
+    "homepage": "https://https://github.com/access-ci-org/openid_connect_accessci_client",
+    "require": {
+        "drupal/openid_connect": "^1.2"
+    },
+    "license": "Apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "Drupal\\openid_connect_accessci_client\\Plugin\\OpenIDConnectClient\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+                "type": "vcs",
+                "url": "https://github.com/access-ci-org/openid_connect_accessci_client"
+        }
+    ],
+    "authors": [
+        {
+            "name": "JP Navarro",
+            "email": "navarro@anl.gov"
+        }
+    ],
+    "minimum-stability": "beta"
+}
