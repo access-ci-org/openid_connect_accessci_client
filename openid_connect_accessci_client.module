@@ -9,24 +9,49 @@ function openid_connect_accessci_client_openid_connect_userinfo_save(UserInterfa
         || empty($context['userinfo']['sub'])) {
         return;
     }
+
+    # Set the account name to the 'sub' username@access-ci.org
     $account->set('name', $context['userinfo']['sub']);
 
+    # Implement the optional 'login_redirection' setting
     $settings = \Drupal::config('openid_connect.settings.accessci')->get('settings');
     $redirect_to = $settings['login_redirection'];
-    if ( !empty($redirect_to) ) {
-        $redirect = new RedirectResponse(Url::fromUserInput($redirect_to)->toString());
-        $redirect->send();
+    if ( empty($redirect_to) ) {
+        return TRUE;
     }
+    $redirect = new RedirectResponse(Url::fromUserInput($redirect_to)->toString());
+    $redirect->send();
 
     return TRUE;
 }
 
 function openid_connect_accessci_client_openid_connect_pre_authorize($account, array $context) {
-    if ( empty($context['userinfo']['idp_name'])
-        || $context['userinfo']['idp_name'] != 'ACCESS' ) {
-            Drupal::messenger()->addError(t('This website requires login using an ACCESS CI identity'));
-            return FALSE;
+    if ( empty($context['userinfo']['idp_name']) ) {
+        Drupal::messenger()->addError(t('Login must be with the ACCESS CI identity, MISSING idp_name ERROR'));
+        return FALSE;
+    }
+    if ( $context['userinfo']['idp_name'] != 'ACCESS' ) {
+        Drupal::messenger()->addError(t('Login must be with the ACCESS CI identity, INVALID idp_name=' . $context['userinfo']['idp_name'] ));
+        return FALSE;
     }
 
    return TRUE;
+}
+
+/**
+ * Appends destination=current_page to login/logout
+ */
+function openid_connect_accessci_client_link_alter(&$variables) {
+    $routes = [
+        'user.login',
+        'user.logout',
+    ];
+    /* @var Drupal\Core\Url $url */
+    $url = $variables['url'];
+
+    if (!$url->isExternal() && $url->isRouted() && in_array($url->getRouteName(), $routes)) {
+        // Get current path.
+        $current = \Drupal::service('path.current')->getPath();
+        $variables['options']['query']['destination'] = $current;
+    }
 }

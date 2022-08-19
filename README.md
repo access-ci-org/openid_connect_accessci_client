@@ -17,8 +17,9 @@ Module requirements:
 
 Features:
 
-- Login fails if the user didn't authenticate with the ACCESS IdP
+- Requires authenticating with the ACCESS CI IdP
 - Sets the Drupal account name to the ePPN / identity sub (subject)
+- Defaults to the recommended authorization, token, and userinfo endpoints
+- Defaults to the recommended scopes
+- Sets to destination parameter to the current page on login and logout
 - Can be configured with a page the user is redirected to after login
-- Correct default authorization, token, and userinfo endpoints
-- Recommended default scopes
