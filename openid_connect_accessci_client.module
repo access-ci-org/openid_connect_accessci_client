@@ -39,7 +39,7 @@ function openid_connect_accessci_client_openid_connect_pre_authorize($account, a
         Drupal::messenger()->addError(t('Login failed, MISSING sub ERROR'));
         return FALSE;
     }
-    if ( ! preg_match(".+@access-ci.org$", $context['userinfo']['sub']) ) {
+    if ( ! preg_match("/^.+@access-ci.org$/", $context['userinfo']['sub']) ) {
         Drupal::messenger()->addError(t('Login failed, ACCESS CI identity must be linked to the login identity' ));
         return FALSE;
     }

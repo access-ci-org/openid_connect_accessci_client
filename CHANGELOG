@@ -1,2 +1,5 @@
-1.0.1-rc1s 20220829 JP
+1.0.1-rc2 20220829 JP
+  - Fix regular expression that matches username@access-ci.org
+
+1.0.1-rc1 20220829 JP
   - Support use of linked identities: ignored used IdP and require linked access-ci identity
