@@ -27,15 +27,24 @@ function openid_connect_accessci_client_openid_connect_userinfo_save(UserInterfa
 
 function openid_connect_accessci_client_openid_connect_pre_authorize($account, array $context) {
     if ( empty($context['userinfo']['idp_name']) ) {
-        Drupal::messenger()->addError(t('Login must be with the ACCESS CI identity, MISSING idp_name ERROR'));
+#       Drupal::messenger()->addError(t('Login must be with the ACCESS CI identity, MISSING idp_name ERROR'));
+        Drupal::messenger()->addError(t('Login failed, MISSING idp_name ERROR'));
         return FALSE;
     }
-    if ( $context['userinfo']['idp_name'] != 'ACCESS' ) {
-        Drupal::messenger()->addError(t('Login must be with the ACCESS CI identity, INVALID idp_name=' . $context['userinfo']['idp_name'] ));
+#   if ( $context['userinfo']['idp_name'] != 'ACCESS' ) {
+#       Drupal::messenger()->addError(t('Login must be with the ACCESS CI identity, INVALID idp_name=' . $context['userinfo']['idp_name'] ));
+#       return FALSE;
+#   }
+    if ( empty($context['userinfo']['sub']) ) {
+        Drupal::messenger()->addError(t('Login failed, MISSING sub ERROR'));
+        return FALSE;
+    }
+    if ( ! preg_match(".+@access-ci.org$", $context['userinfo']['sub']) ) {
+        Drupal::messenger()->addError(t('Login failed, ACCESS CI identity must be linked to the login identity' ));
         return FALSE;
     }
 
-   return TRUE;
+    return TRUE;
 }
 
 /**
