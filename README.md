@@ -14,17 +14,17 @@ ACCESS IdP: https://identity.access-ci.org/
 
 + Implements an "ACCESS CI" OpenID Connect custom client 
 + Configurable settings:
- - Client ID
- - Client secret
- - Authorizaton endpoint
-   * Default to recommended: https://cilogon.org/authorize?idphint=https%3A%2F%2Faccess-ci.org%2Fidp
- - Token endpoint
-   * Default to recommended: https://cilogon.org/oauth2/token
- - Userinfo endpoint
-   * Default to recommended: https://cilogon.org/oauth2/userinfo
- - Requested scopes
-   * Default to recommended: email,openid,profile,org.cilogon.userinfo
- - Login redirect path
+  - Client ID
+  - Client secret
+  - Authorizaton endpoint
+    * Default to recommended: https://cilogon.org/authorize?idphint=https%3A%2F%2Faccess-ci.org%2Fidp
+  - Token endpoint
+    * Default to recommended: https://cilogon.org/oauth2/token
+  - Userinfo endpoint
+    * Default to recommended: https://cilogon.org/oauth2/userinfo
+  - Requested scopes
+    * Default to recommended: email,openid,profile,org.cilogon.userinfo
+  - Login redirect path
 + Can be configured with a page the user is redirected to after login
 + Login with any CILogon identity as long as there is an ACCESS CI linked identity
 + Sets the Drupal account name to the ePPN / identity sub (subject)
