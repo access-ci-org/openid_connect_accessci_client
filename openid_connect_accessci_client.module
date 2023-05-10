@@ -48,12 +48,13 @@ function openid_connect_accessci_client_openid_connect_pre_authorize($account, a
 }
 
 /**
- * Appends destination=current_page to login/logout
+ * Appends destination=current_page to login
+ * No longer does this for user.logout, as other modules may need to redirect
+ * externally instead, on logout
  */
 function openid_connect_accessci_client_link_alter(&$variables) {
     $routes = [
         'user.login',
-        'user.logout',
     ];
     /* @var Drupal\Core\Url $url */
     $url = $variables['url'];
