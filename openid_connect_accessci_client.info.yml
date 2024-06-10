@@ -1,7 +1,7 @@
 name: OpenID Connect ACCESS CI Client
 type: module
 description: The ACCESS CI client implementation for the OpenID Connect protocol.
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 package: Other
 dependencies:
   - openid_connect
