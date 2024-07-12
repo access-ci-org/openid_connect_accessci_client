@@ -1,3 +1,10 @@
+1.0.3 20240712 JP
+  - Support Drupal 10
+  - See commits
+
+1.0.2 20240510 Eric
+  - See commits
+
 1.0.1-rc2 20220829 JP
   - Fix regular expression that matches username@access-ci.org
 

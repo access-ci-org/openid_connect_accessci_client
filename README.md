@@ -32,6 +32,6 @@ ACCESS IdP: https://identity.access-ci.org/
 
 ## Module requirements:
 
-+ Drupal 9.4.x, 9.5.x
++ Drupal 9.4.x, 9.5.x, 10.x
 + drupal/openid_connect 1.2.x
 + Client registration at https://registry.access-ci.org/
