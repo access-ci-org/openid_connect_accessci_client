@@ -1,3 +1,6 @@
+1.0.4 20240716 JP
+  - Fix composer.json require to "drupal/openid_connect": "^1.4"
+
 1.0.3 20240712 JP
   - Support Drupal 10
   - See commits

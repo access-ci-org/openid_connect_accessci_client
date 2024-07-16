@@ -4,7 +4,7 @@
     "type": "drupal-custom-module",
     "homepage": "https://https://github.com/access-ci-org/openid_connect_accessci_client",
     "require": {
-        "accessci/openid_connect_researchci_client": "^1.0"
+        "drupal/openid_connect": "^1.4"
     },
     "license": "Apache-2.0",
     "autoload": {
